@@ -35,12 +35,84 @@
     <header class="navbar" id="navbar">
       <div class="navbar__inner container">
         <a href="#home" class="logo">
-          <img
-            src="images/logo.png"
-            alt="Pink & Paper Logo"
-          />
+          <img src="images/logo.png" alt="Pink & Paper Logo" />
         </a>
+<!-- ============ SHOPPING CART ============ -->
+<div class="cart-overlay" id="cartOverlay"></div>
 
+<aside class="cart" id="cart">
+  <div class="cart__header">
+    <div>
+      <span class="tape-label">مشترياتك</span>
+      <h2>سلة المشتريات 🛒</h2>
+    </div>
+
+    <button
+      class="cart__close"
+      id="cartClose"
+      aria-label="إغلاق السلة"
+    >
+      ×
+    </button>
+  </div>
+
+  <!-- Products will be added here by JavaScript -->
+  <div class="cart__items" id="cartItems">
+    <div class="cart__empty" id="cartEmpty">
+      <span>🛍️</span>
+      <h3>السلة فارغة</h3>
+      <p>أضف المنتجات التي تعجبك وسنجهز طلبك لك.</p>
+    </div>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart__footer">
+    <div class="cart__total">
+      <span>الإجمالي</span>
+      <strong id="cartTotal">0 جنيه</strong>
+    </div>
+
+    <button class="cart__whatsapp" id="cartWhatsapp">
+      💬 إرسال الطلب عبر واتساب
+    </button>
+
+    <button class="cart__clear" id="cartClear">
+      إفراغ السلة
+    </button>
+  </div>
+</aside><!-- ============ FAVORITES ============ -->
+<div class="favorites-overlay" id="favoritesOverlay"></div>
+
+<aside class="favorites" id="favorites">
+
+  <div class="favorites__header">
+    <div>
+      <span class="tape-label">اختياراتك</span>
+      <h2>المنتجات المفضلة ❤️</h2>
+    </div>
+
+    <button
+      class="favorites__close"
+      id="favoritesClose"
+      aria-label="إغلاق المفضلة"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="favorites__items" id="favoritesItems">
+
+    <div class="favorites__empty">
+      <span>🤍</span>
+      <h3>لا توجد منتجات مفضلة</h3>
+      <p>
+        اضغط على ❤️ بجانب أي منتج لإضافته إلى مفضلاتك.
+      </p>
+    </div>
+
+  </div>
+
+</aside>
         <nav class="nav-links" id="navLinks">
           <a href="#home" class="nav-link">الرئيسية</a>
           <a href="#products" class="nav-link">المنتجات</a>
@@ -50,7 +122,18 @@
           <a href="#products" class="btn btn--primary btn--small nav-cta"
             >المنتجات</a
           >
+          
         </nav>
+        <!-- Cart Button -->
+        <button class="cart-toggle" id="cartToggle" aria-label="فتح السلة">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <!-- Favorites Button -->
+<button class="favorites-toggle" id="favoritesToggle" aria-label="فتح المفضلة">
+  <span class="favorites-icon">❤️</span>
+  <span class="favorites-count" id="favoritesCount">0</span>
+</button>
 
         <!-- Mobile menu toggle (hamburger) -->
         <button
@@ -201,7 +284,7 @@
           <div class="feature-grid">
             <div class="feature-card">
               <span class="feature-card__icon">🎀</span>
-              <h3> منتجات لطيفة ومميزة</h3>
+              <h3>منتجات لطيفة ومميزة</h3>
               <p>منتجات مختارة بعناية لتجد ما يناسب ذوقك واحتياجاتك.</p>
             </div>
             <div class="feature-card">
@@ -238,10 +321,7 @@
         <div class="container about__inner">
           <div class="about__visual">
             <div class="about__blob">
-              <img
-                src="images/logo.png"
-                alt="Pink & Paper"
-              />
+              <img src="images/logo.png" alt="Pink & Paper" />
             </div>
           </div>
 
@@ -301,7 +381,10 @@
           <div class="section__head">
             <span class="tape-label">مرحبًا بك🌷</span>
             <h2 class="section__title">تواصل معنا</h2>
-            <p class="section__subtitle">يسعدنا أن نسمع منك، سواء كان لديك استفسار أو اقتراح أو ترغب في طلب أحد منتجاتنا. </p>
+            <p class="section__subtitle">
+              يسعدنا أن نسمع منك، سواء كان لديك استفسار أو اقتراح أو ترغب في طلب
+              أحد منتجاتنا.
+            </p>
           </div>
 
           <div class="contact-grid">
@@ -345,11 +428,15 @@
     <footer class="footer">
       <div class="container footer__inner">
         <div class="footer__brand">
-  <a href="#home" class="logo logo--footer">
-    <img src="images/logo.png" alt="Pink & Paper Logo" class="footer-logo">
-  </a>
-  <p>Your Cute Stationery Corner </p>
-</div>
+          <a href="#home" class="logo logo--footer">
+            <img
+              src="images/logo.png"
+              alt="Pink & Paper Logo"
+              class="footer-logo"
+            />
+          </a>
+          <p>Your Cute Stationery Corner</p>
+        </div>
 
         <div class="footer__links">
           <h4>Quick Links</h4>
@@ -363,11 +450,7 @@
         <div class="footer__social">
           <h4>Follow Us</h4>
           <div class="footer__social-icons">
-            <a
-              href="#"
-              aria-label="Instagram"
-              target="_blank"
-              rel="noopener"
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener"
               >📷</a
             >
             <a
