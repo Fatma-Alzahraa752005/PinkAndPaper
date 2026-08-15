@@ -27,7 +27,7 @@ const PRODUCTS = [
     description: "يلا نحلي بالكيك 😍",
     price: 20,
     images: [
-      "images/pen/earaser.jpg",
+      
       "images/pen/photo_2026-08-15_22-08-20.jpg",
     ],
     category: "pens",
