@@ -16,24 +16,30 @@ const WHATSAPP_NUMBER = "201159627686";
 
 const PRODUCTS = [
   {
-    name: "Pastel Gel Pens Set (12pcs)",
-    description: "Smooth gel ink pens in 12 dreamy pastel shades.",
-    price: 120,
-    image: "https://placehold.co/500x500/f6c9d4/5b4038?text=Pastel+Gel+Pens",
+    name: "كريكتور",
+    description: "شكل باندا 4 مللي",
+    price: 15,
+    image: "images/pen/panda.jpg",
     category: "pens",
   },
   {
-    name: "Kraft Cover Notebook A5",
-    description: "120-page dotted notebook with a soft kraft cover.",
-    price: 85,
-    image: "https://placehold.co/500x500/fbe2e8/5b4038?text=Kraft+Notebook",
-    category: "notebooks",
+    name: "أستيكة Cake Roll ❤️",
+    description: "يلا نحلي بالكيك 😍",
+    price: 20,
+    images: [
+      "images/pen/earaser.jpg",
+      "images/pen/photo_2026-08-15_22-08-20.jpg",
+    ],
+    category: "pens",
   },
-  {
-    name: "Sticky Notes Bundle (5 pads)",
-    description: "Five pastel sticky note pads for study & planning.",
-    price: 60,
-    image: "https://placehold.co/500x500/f6c9d4/5b4038?text=Sticky+Notes",
+    {
+    name: "نوتة كرومي 4 فواصل 🎀",
+    description: "مقاس 10*12 سم تقريباً ",
+    price: 30,
+    images: [
+      "images/NOTES/photo_2026-08-15_22-45-22.jpg",
+
+    ],
     category: "school",
   },
   {
@@ -100,7 +106,20 @@ Price: ${product.price} EGP`;
 
 
 /* --------------------------------------------------------------------------
-   7. UPDATE FAVORITES COUNT
+   7. PRODUCT IMAGES HELPER
+   -------------------------------------------------------------------------- */
+
+function getProductImages(product) {
+  if (product.images && product.images.length > 0) {
+    return product.images;
+  }
+
+  return [product.image];
+}
+
+
+/* --------------------------------------------------------------------------
+   8. UPDATE FAVORITES COUNT
    -------------------------------------------------------------------------- */
 
 function updateFavoritesCount() {
@@ -114,10 +133,11 @@ function updateFavoritesCount() {
 
 
 /* --------------------------------------------------------------------------
-   8. RENDER FAVORITES
+   9. RENDER FAVORITES
    -------------------------------------------------------------------------- */
 
 function renderFavorites() {
+
   const favoritesItems =
     document.getElementById("favoritesItems");
 
@@ -161,14 +181,19 @@ function renderFavorites() {
 
     const product = PRODUCTS[index];
 
+    const productImages =
+      getProductImages(product);
+
     return `
       <div class="favorite-item">
 
         <div class="favorite-item__image">
+
           <img
-            src="${product.image}"
+            src="${productImages[0]}"
             alt="${product.name}"
           />
+
         </div>
 
         <div class="favorite-item__info">
@@ -205,7 +230,8 @@ function renderFavorites() {
 
       button.addEventListener("click", () => {
 
-        const index = Number(button.dataset.index);
+        const index =
+          Number(button.dataset.index);
 
         removeFromFavorites(index);
 
@@ -219,7 +245,7 @@ function renderFavorites() {
 
 
 /* --------------------------------------------------------------------------
-   9. ADD / REMOVE FAVORITE
+   10. ADD / REMOVE FAVORITE
    -------------------------------------------------------------------------- */
 
 function toggleFavorite(productIndex, button) {
@@ -293,7 +319,7 @@ function toggleFavorite(productIndex, button) {
 
 
 /* --------------------------------------------------------------------------
-   10. REMOVE FROM FAVORITES
+   11. REMOVE FROM FAVORITES
    -------------------------------------------------------------------------- */
 
 function removeFromFavorites(productIndex) {
@@ -336,7 +362,7 @@ function removeFromFavorites(productIndex) {
 
 
 /* --------------------------------------------------------------------------
-   11. OPEN FAVORITES
+   12. OPEN FAVORITES
    -------------------------------------------------------------------------- */
 
 function openFavorites() {
@@ -380,7 +406,7 @@ function openFavorites() {
 
 
 /* --------------------------------------------------------------------------
-   12. CLOSE FAVORITES
+   13. CLOSE FAVORITES
    -------------------------------------------------------------------------- */
 
 function closeFavorites() {
@@ -421,7 +447,7 @@ function closeFavorites() {
 
 
 /* --------------------------------------------------------------------------
-   13. SETUP FAVORITES
+   14. SETUP FAVORITES
    -------------------------------------------------------------------------- */
 
 function setupFavorites() {
@@ -517,7 +543,7 @@ function setupFavorites() {
 
 
 /* --------------------------------------------------------------------------
-   14. RENDER PRODUCT CARDS
+   15. RENDER PRODUCT CARDS
    -------------------------------------------------------------------------- */
 
 function renderProducts() {
@@ -535,6 +561,14 @@ function renderProducts() {
         favorites.includes(index);
 
 
+      const productImages =
+        getProductImages(product);
+
+
+      const mainImage =
+        productImages[0];
+
+
       return `
         <article
           class="product-card reveal"
@@ -544,7 +578,8 @@ function renderProducts() {
           <div class="product-card__image-wrap">
 
             <img
-              src="${product.image}"
+              class="product-main-image"
+              src="${mainImage}"
               alt="${product.name}"
               loading="lazy"
             />
@@ -565,6 +600,38 @@ function renderProducts() {
             </button>
 
           </div>
+
+
+          ${
+            productImages.length > 1
+              ? `
+                <div class="product-thumbnails">
+
+                  ${productImages.map(
+                    (image, imageIndex) => `
+                      <button
+                        class="product-thumbnail ${
+                          imageIndex === 0
+                            ? "is-active"
+                            : ""
+                        }"
+                        type="button"
+                        data-image="${image}"
+                      >
+
+                        <img
+                          src="${image}"
+                          alt="${product.name}"
+                        />
+
+                      </button>
+                    `
+                  ).join("")}
+
+                </div>
+              `
+              : ""
+          }
 
 
           <div class="product-card__body">
@@ -602,6 +669,64 @@ function renderProducts() {
 
     }
   ).join("");
+
+
+  /* ------------------------------------------------------------------------
+     PRODUCT IMAGE THUMBNAILS
+     ------------------------------------------------------------------------ */
+
+  grid
+    .querySelectorAll(".product-thumbnail")
+    .forEach((thumbnail) => {
+
+      thumbnail.addEventListener(
+        "click",
+        () => {
+
+          const image =
+            thumbnail.dataset.image;
+
+
+          const card =
+            thumbnail.closest(
+              ".product-card"
+            );
+
+
+          const mainImage =
+            card.querySelector(
+              ".product-main-image"
+            );
+
+
+          if (mainImage) {
+
+            mainImage.src = image;
+
+          }
+
+
+          card
+            .querySelectorAll(
+              ".product-thumbnail"
+            )
+            .forEach((item) => {
+
+              item.classList.remove(
+                "is-active"
+              );
+
+            });
+
+
+          thumbnail.classList.add(
+            "is-active"
+          );
+
+        }
+      );
+
+    });
 
 
   /* ------------------------------------------------------------------------
@@ -660,7 +785,7 @@ function renderProducts() {
 
 
 /* --------------------------------------------------------------------------
-   15. ADD PRODUCT TO CART
+   16. ADD PRODUCT TO CART
    -------------------------------------------------------------------------- */
 
 function addToCart(productIndex) {
@@ -719,7 +844,7 @@ function addToCart(productIndex) {
 
 
 /* --------------------------------------------------------------------------
-   16. REMOVE PRODUCT FROM CART
+   17. REMOVE PRODUCT FROM CART
    -------------------------------------------------------------------------- */
 
 function removeFromCart(productIndex) {
@@ -735,7 +860,7 @@ function removeFromCart(productIndex) {
 
 
 /* --------------------------------------------------------------------------
-   17. CHANGE PRODUCT QUANTITY
+   18. CHANGE PRODUCT QUANTITY
    -------------------------------------------------------------------------- */
 
 function changeQuantity(productIndex, amount) {
@@ -768,7 +893,7 @@ function changeQuantity(productIndex, amount) {
 
 
 /* --------------------------------------------------------------------------
-   18. UPDATE CART COUNT
+   19. UPDATE CART COUNT
    -------------------------------------------------------------------------- */
 
 function updateCartCount() {
@@ -793,7 +918,7 @@ function updateCartCount() {
 
 
 /* --------------------------------------------------------------------------
-   19. CALCULATE CART TOTAL
+   20. CALCULATE CART TOTAL
    -------------------------------------------------------------------------- */
 
 function calculateCartTotal() {
@@ -815,7 +940,7 @@ function calculateCartTotal() {
 
 
 /* --------------------------------------------------------------------------
-   20. RENDER CART
+   21. RENDER CART
    -------------------------------------------------------------------------- */
 
 function renderCart() {
@@ -869,6 +994,10 @@ function renderCart() {
       const product =
         PRODUCTS[item.index];
 
+      const productImages =
+        getProductImages(product);
+
+
       const itemTotal =
         product.price *
         item.quantity;
@@ -880,7 +1009,7 @@ function renderCart() {
           <div class="cart-item__image">
 
             <img
-              src="${product.image}"
+              src="${productImages[0]}"
               alt="${product.name}"
             />
 
@@ -1015,7 +1144,7 @@ function renderCart() {
 
 
 /* --------------------------------------------------------------------------
-   21. OPEN CART
+   22. OPEN CART
    -------------------------------------------------------------------------- */
 
 function openCart() {
@@ -1060,7 +1189,7 @@ function openCart() {
 
 
 /* --------------------------------------------------------------------------
-   22. CLOSE CART
+   23. CLOSE CART
    -------------------------------------------------------------------------- */
 
 function closeCart() {
@@ -1105,7 +1234,7 @@ function closeCart() {
 
 
 /* --------------------------------------------------------------------------
-   23. SEND CART TO WHATSAPP
+   24. SEND CART TO WHATSAPP
    -------------------------------------------------------------------------- */
 
 function sendCartToWhatsApp() {
@@ -1170,7 +1299,7 @@ Thank you! 💕`;
 
 
 /* --------------------------------------------------------------------------
-   24. SETUP SHOPPING CART
+   25. SETUP SHOPPING CART
    -------------------------------------------------------------------------- */
 
 function setupCart() {
@@ -1306,7 +1435,7 @@ function setupCart() {
 
 
 /* --------------------------------------------------------------------------
-   25. WIRE UP GENERAL WHATSAPP LINKS
+   26. WIRE UP GENERAL WHATSAPP LINKS
    -------------------------------------------------------------------------- */
 
 function wireGeneralWhatsAppLinks() {
@@ -1343,7 +1472,7 @@ function wireGeneralWhatsAppLinks() {
 
 
 /* --------------------------------------------------------------------------
-   26. MOBILE MENU TOGGLE
+   27. MOBILE MENU TOGGLE
    -------------------------------------------------------------------------- */
 
 function setupMobileMenu() {
@@ -1414,7 +1543,7 @@ function setupMobileMenu() {
 
 
 /* --------------------------------------------------------------------------
-   27. SCROLL REVEAL
+   28. SCROLL REVEAL
    -------------------------------------------------------------------------- */
 
 let revealObserver;
@@ -1474,7 +1603,7 @@ function observeReveals() {
 
 
 /* --------------------------------------------------------------------------
-   28. SETUP SCROLL REVEAL
+   29. SETUP SCROLL REVEAL
    -------------------------------------------------------------------------- */
 
 function setupScrollReveal() {
@@ -1510,7 +1639,7 @@ function setupScrollReveal() {
 
 
 /* --------------------------------------------------------------------------
-   29. BACK TO TOP BUTTON
+   30. BACK TO TOP BUTTON
    -------------------------------------------------------------------------- */
 
 function setupBackToTop() {
@@ -1556,7 +1685,7 @@ function setupBackToTop() {
 
 
 /* --------------------------------------------------------------------------
-   30. NAVBAR SHADOW ON SCROLL
+   31. NAVBAR SHADOW ON SCROLL
    -------------------------------------------------------------------------- */
 
 function setupNavbarScrollState() {
@@ -1588,7 +1717,7 @@ function setupNavbarScrollState() {
 
 
 /* --------------------------------------------------------------------------
-   31. FOOTER YEAR
+   32. FOOTER YEAR
    -------------------------------------------------------------------------- */
 
 function setupFooterYear() {
@@ -1610,7 +1739,7 @@ function setupFooterYear() {
 
 
 /* --------------------------------------------------------------------------
-   32. INIT
+   33. INIT
    -------------------------------------------------------------------------- */
 
 document.addEventListener(

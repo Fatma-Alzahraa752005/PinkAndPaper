@@ -1797,7 +1797,47 @@ p {
   align-items: center;
   justify-content: center;
 }
+/* =========================================================
+   PRODUCT MULTIPLE IMAGES
+   ========================================================= */
 
+.product-card__image-wrap {
+  overflow: visible;
+}
+
+.product-thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.product-thumbnail {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-thumbnail.is-active {
+  border-color: #9b6876;
+}
 /* ==========================================================================
    RESPONSIVE — Small mobile (≤560px)
    ========================================================================== */
