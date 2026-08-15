@@ -18,7 +18,7 @@ const PRODUCTS = [
   {
     name: "كريكتور",
     description: "شكل باندا 4 مللي",
-    price: 15,
+    price: 10,
     image: "images/pen/panda.jpg",
     category: "pens",
   },
@@ -43,19 +43,41 @@ const PRODUCTS = [
     category: "school",
   },
   {
-    name: "Watercolor Paint Set (24 colors)",
-    description: "Beginner-friendly watercolor palette with brush.",
-    price: 150,
-    image: "https://placehold.co/500x500/fbe2e8/5b4038?text=Watercolor+Set",
+    name: "أستيكة ايس كريم 😍",
+    description: "",
+    price: 15,
+    image: "images/pen/photo_2026-08-15_23-17-17.jpg",
     category: "art",
   },
   {
-    name: "Aesthetic Sticker Pack",
-    description: "50+ cute stickers for journals, laptops & more.",
+    name: "استكية قلم سوستة ♥️ ",
+    description: "استيكة حجم كبير",
     price: 45,
-    image: "https://placehold.co/500x500/f6c9d4/5b4038?text=Sticker+Pack",
+    image: "images/pen/photo_2026-08-15_23-21-08.jpg",
     category: "cute",
   },
+  {
+  name: "ستيكي نوتس دبدوب ❤️",
+  description: "ورقها ناعم وكريمي جدا🤍 فيها 70 ورقة",
+  price: 95,
+  images: [
+    "images/NOTES/photo_2026-08-15_23-31-33.jpg",
+    "images/NOTES/photo_2026-08-15_23-31-35.jpg",
+    "images/NOTES/photo_2026-08-15_23-31-37 (2).jpg",
+    "images/NOTES/photo_2026-08-15_23-31-37.jpg"
+  ],
+  category: "cute",
+},
+  {
+  name: "كشكول سلك فواصل بلاستيك – حجم A5 ✨",
+  description: `✔️ عدد 124 ورقة
+✔️ متقسم .. ألوانه كلها باستيل ♥️
+✔️ حجم A5 عملي يدخل الشنطة
+✔️ خامة ورق ممتازة`,
+  price: 95,
+  image: "images/NOTES/photo_2026-08-16_00-00-14.jpg",
+  category: "cute",
+},
   {
     name: "Washi Tape Set (6 rolls)",
     description: "Patterned washi tape rolls for decorating anything.",
