@@ -1378,13 +1378,61 @@ function sendCartToWhatsApp() {
 Thank you! 💕`;
 
 
-  /* Open WhatsApp without popup blocker */
+  /* Open WhatsApp in a new tab, so the store stays open behind it */
 
   const whatsappLink =
     buildWhatsAppLink(message);
 
 
-  window.location.href = whatsappLink;
+  window.open(whatsappLink, "_blank", "noopener");
+
+
+  /* Reset the cart + form, close the cart drawer,
+     then show the thank-you confirmation */
+
+  cart = [];
+
+  renderCart();
+
+  updateCartCount();
+
+
+  const checkoutForm =
+    document.getElementById("checkoutForm");
+
+  if (checkoutForm) {
+
+    checkoutForm
+      .querySelectorAll("input, textarea")
+      .forEach((field) => {
+
+        field.value = "";
+
+        const wrapper =
+          field.closest(".form-field");
+
+        if (wrapper) {
+
+          wrapper.classList.remove("has-error");
+
+        }
+
+      });
+
+    checkoutForm
+      .querySelectorAll(".form-error")
+      .forEach((errorEl) => {
+
+        errorEl.textContent = "";
+
+      });
+
+  }
+
+
+  closeCart();
+
+  openThankYou();
 
 }
 
@@ -1544,6 +1592,107 @@ function setupCart() {
   renderCart();
 
   updateCartCount();
+
+}
+
+
+/* --------------------------------------------------------------------------
+   26B. OPEN / CLOSE THANK YOU MODAL
+   -------------------------------------------------------------------------- */
+
+function openThankYou() {
+
+  const thankyouModal =
+    document.getElementById("thankyouModal");
+
+  const thankyouOverlay =
+    document.getElementById("thankyouOverlay");
+
+
+  if (!thankyouModal) return;
+
+
+  thankyouModal.classList.add("is-open");
+
+
+  if (thankyouOverlay) {
+
+    thankyouOverlay.classList.add("is-open");
+
+  }
+
+}
+
+
+function closeThankYou() {
+
+  const thankyouModal =
+    document.getElementById("thankyouModal");
+
+  const thankyouOverlay =
+    document.getElementById("thankyouOverlay");
+
+
+  if (!thankyouModal) return;
+
+
+  thankyouModal.classList.remove("is-open");
+
+
+  if (thankyouOverlay) {
+
+    thankyouOverlay.classList.remove("is-open");
+
+  }
+
+}
+
+
+/* --------------------------------------------------------------------------
+   26C. SETUP THANK YOU MODAL
+   -------------------------------------------------------------------------- */
+
+function setupThankYou() {
+
+  const thankyouClose =
+    document.getElementById("thankyouClose");
+
+  const thankyouOverlay =
+    document.getElementById("thankyouOverlay");
+
+
+  if (thankyouClose) {
+
+    thankyouClose.addEventListener(
+      "click",
+      closeThankYou
+    );
+
+  }
+
+
+  if (thankyouOverlay) {
+
+    thankyouOverlay.addEventListener(
+      "click",
+      closeThankYou
+    );
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key === "Escape") {
+
+        closeThankYou();
+
+      }
+
+    }
+  );
 
 }
 
@@ -1931,6 +2080,8 @@ document.addEventListener(
     setupCart();
 
     setupFavorites();
+
+    setupThankYou();
 
     setupCategoryFilters();
 
