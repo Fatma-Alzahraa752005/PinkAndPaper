@@ -551,6 +551,7 @@ p {
 }
 
 /* ---------- 7. CATEGORIES ---------- */
+
 .category-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -558,38 +559,123 @@ p {
 }
 
 .category-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 280px;
+  padding: 30px 22px 24px;
+
   background-color: var(--color-white);
   border-radius: var(--radius-md);
-  padding: 32px 20px;
+
   text-align: center;
+  text-decoration: none;
+
   box-shadow: var(--shadow-card);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
   border: 1px solid transparent;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+
+/* ---------- Hover ---------- */
 
 .category-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lift);
-  background-color: var(--color-pink-soft);
-  border-color: var(--color-pink);
+
+  /* الكارت يفضل أبيض */
+  background-color: var(--color-white);
+  border-color: transparent;
 }
+
+
+/* ---------- Icon ---------- */
 
 .category-card__icon {
-  display: inline-block;
-  font-size: 2.3rem;
-  margin-bottom: 14px;
+  width: 76px;
+  height: 76px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+  background-color: var(--color-pink-soft);
+
+  font-size: 2.5rem;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
 }
+
+
+/* الأيقونة فقط تتغير عند الـ Hover */
+
+.category-card:hover .category-card__icon {
+  transform: scale(1.08) rotate(-4deg);
+  background-color: var(--color-pink);
+}
+
+
+/* ---------- Title ---------- */
 
 .category-card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 6px;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: var(--color-brown);
 }
+
+
+/* ---------- Description ---------- */
 
 .category-card p {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--color-brown-soft);
+
+  line-height: 1.8;
+
+  margin-bottom: 18px;
+  flex-grow: 1;
 }
 
+
+/* ---------- Category Link ---------- */
+
+.category-card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 14px;
+
+  border-radius: var(--radius-pill);
+
+  background-color: var(--color-pink-soft);
+  color: var(--color-mauve);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* عند الضغط/الـ Hover:
+   الخلفية وردي والكلام أسود */
+
+.category-card:hover .category-card__link {
+  background-color: var(--color-pink);
+  color: #000;
+}
 /* ---------- 8. PRODUCTS ---------- */
 .product-grid {
   display: grid;
@@ -1837,6 +1923,60 @@ p {
 
 .product-thumbnail.is-active {
   border-color: #9b6876;
+}
+/* ==============================
+   FINAL DRAWER FIX
+   ============================== */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.cart,
+.favorites {
+  overflow-x: hidden;
+}
+
+/* ---------- Favorite Item Actions ---------- */
+
+.favorite-item__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.favorite-item__add-cart,
+.favorite-item__remove {
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  transition: 0.2s ease;
+}
+
+/* Add to Cart */
+.favorite-item__add-cart {
+  background: var(--color-pink);
+  color: black;
+}
+
+.favorite-item__add-cart:hover {
+  background: var(--color-pink-deep);
+  color: black;
+  transform: translateY(-1px);
+}
+
+/* Remove from Favorites */
+.favorite-item__remove {
+  background: var(--color-pink-soft);
+  color: var(--color-brown);
+}
+
+.favorite-item__remove:hover {
+  background: #f5d1da;
 }
 /* ==========================================================================
    RESPONSIVE — Small mobile (≤560px)

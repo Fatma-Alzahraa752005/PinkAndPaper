@@ -74,7 +74,7 @@ const PRODUCTS = [
 ✔️ متقسم .. ألوانه كلها باستيل ♥️
 ✔️ حجم A5 عملي يدخل الشنطة
 ✔️ خامة ورق ممتازة`,
-  price: 95,
+  price: 150,
   image: "images/NOTES/photo_2026-08-16_00-00-14.jpg",
   category: "cute",
 },
@@ -228,14 +228,26 @@ function renderFavorites() {
             ${product.price} جنيه
           </p>
 
-          <button
-            class="favorite-item__remove"
-            type="button"
-            data-index="${index}"
-          >
-            إزالة من المفضلة
-          </button>
+          <div class="favorite-item__actions">
 
+  <button
+    class="favorite-item__add-cart"
+    type="button"
+    data-index="${index}"
+  >
+    🛒 أضف إلى السلة
+  </button>
+
+  <button
+    class="favorite-item__remove"
+    type="button"
+    data-index="${index}"
+    title="إزالة من المفضلة"
+  >
+    إزالة من المفضلة 🗑️
+  </button>
+
+</div>
         </div>
 
       </div>
@@ -260,6 +272,22 @@ function renderFavorites() {
       });
 
     });
+    /* Add favorite to cart */
+favoritesItems
+  .querySelectorAll(".favorite-item__add-cart")
+  .forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.index);
+
+      addToCart(index);
+
+      button.textContent = "✓ تمت الإضافة";
+
+      setTimeout(() => {
+        button.textContent = "🛒 أضف إلى السلة";
+      }, 900);
+    });
+  });
 
 
   updateFavoritesCount();
@@ -1758,36 +1786,101 @@ function setupFooterYear() {
   }
 
 }
+/* --------------------------------------------------------------------------
+   CATEGORY FILTER
+   -------------------------------------------------------------------------- */
 
+function setupCategoryFilters() {
+
+  const categoryCards =
+    document.querySelectorAll(".category-card");
+
+  const productCards =
+    document.querySelectorAll(".product-card");
+
+  categoryCards.forEach((card) => {
+
+    card.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      const selectedCategory =
+        card.dataset.filter;
+
+      productCards.forEach((product) => {
+
+        const productCategory =
+          product.dataset.category;
+
+        if (
+          productCategory === selectedCategory
+        ) {
+          product.style.display = "flex";
+        } else {
+          product.style.display = "none";
+        }
+
+      });
+
+      document
+        .getElementById("products")
+        ?.scrollIntoView({
+          behavior: "smooth"
+        });
+
+    });
+
+  });
+
+}
 
 /* --------------------------------------------------------------------------
    33. INIT
    -------------------------------------------------------------------------- */
 
+// document.addEventListener(
+//   "DOMContentLoaded",
+//   () => {
+
+//     renderProducts();
+
+//     renderFavorites();
+
+//     updateFavoritesCount();
+
+//     wireGeneralWhatsAppLinks();
+
+//     setupMobileMenu();
+
+//     setupCart();
+
+//     setupFavorites();
+
+//     setupScrollReveal();
+
+//     setupBackToTop();
+
+//     setupNavbarScrollState();
+
+//     setupFooterYear();
+
+//   }
+// );
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
     renderProducts();
-
     renderFavorites();
-
     updateFavoritesCount();
-
     wireGeneralWhatsAppLinks();
-
     setupMobileMenu();
-
     setupCart();
-
     setupFavorites();
-
+    setupCategoryFilters();
     setupScrollReveal();
-
     setupBackToTop();
-
     setupNavbarScrollState();
-
     setupFooterYear();
 
   }
