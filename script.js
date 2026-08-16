@@ -908,7 +908,8 @@ function updateCartCount() {
   const cartCount =
     document.getElementById("cartCount");
 
-  if (!cartCount) return;
+  const floatingCartCount =
+    document.getElementById("floatingCartCount");
 
 
   const totalItems =
@@ -919,8 +920,15 @@ function updateCartCount() {
     );
 
 
-  cartCount.textContent =
-    totalItems;
+  if (cartCount) {
+    cartCount.textContent = totalItems;
+  }
+
+
+  if (floatingCartCount) {
+    floatingCartCount.textContent = totalItems;
+  }
+
 }
 
 
@@ -1380,6 +1388,7 @@ Thank you! 💕`;
 
 }
 
+
 /* --------------------------------------------------------------------------
    26. SETUP SHOPPING CART
    -------------------------------------------------------------------------- */
@@ -1388,6 +1397,9 @@ function setupCart() {
 
   const cartToggle =
     document.getElementById("cartToggle");
+
+  const floatingCartToggle =
+    document.getElementById("floatingCartToggle");
 
   const cartClose =
     document.getElementById("cartClose");
@@ -1405,6 +1417,38 @@ function setupCart() {
   if (cartToggle) {
 
     cartToggle.addEventListener(
+      "click",
+      () => {
+
+        const cartElement =
+          document.getElementById("cart");
+
+
+        if (
+          cartElement?.classList.contains(
+            "is-open"
+          )
+        ) {
+
+          closeCart();
+
+        } else {
+
+          openCart();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* Floating Cart Button */
+
+  if (floatingCartToggle) {
+
+    floatingCartToggle.addEventListener(
       "click",
       () => {
 

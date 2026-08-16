@@ -2754,3 +2754,65 @@ body {
 .checkout-form {
   flex-shrink: 0;
 }
+/* =========================================================
+   FLOATING CART BUTTON
+   ========================================================= */
+
+.floating-cart {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  background-color: var(--color-pink-soft);
+  color: var(--color-brown);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 1.35rem;
+
+  box-shadow: var(--shadow-lift);
+
+  z-index: 150;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease,
+    background-color 0.2s ease;
+}
+
+.floating-cart.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.floating-cart:hover {
+  background-color: var(--color-pink);
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .floating-cart {
+    right: 18px;
+    bottom: 20px;
+
+    width: 52px;
+    height: 52px;
+  }
+}

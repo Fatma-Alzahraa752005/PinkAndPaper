@@ -37,6 +37,40 @@
         <a href="#home" class="logo">
           <img src="images/logo.png" alt="Pink & Paper Logo" />
         </a>
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link">الرئيسية</a>
+          <a href="#products" class="nav-link">المنتجات</a>
+          <a href="#categories" class="nav-link">التصنيفات</a>
+          <a href="#about" class="nav-link">قصتنا</a>
+          <a href="#contact" class="nav-link">تواصل</a>
+          <a href="#products" class="btn btn--primary btn--small nav-cta"
+            >المنتجات</a
+          >
+          
+        </nav>
+        <!-- Cart Button -->
+        <button class="cart-toggle" id="cartToggle" aria-label="فتح السلة">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <!-- Favorites Button -->
+<button class="favorites-toggle" id="favoritesToggle" aria-label="فتح المفضلة">
+  <span class="favorites-icon">❤️</span>
+  <span class="favorites-count" id="favoritesCount">0</span>
+</button>
+
+        <!-- Mobile menu toggle (hamburger) -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
 <!-- ============ SHOPPING CART ============ -->
 <div class="cart-overlay" id="cartOverlay"></div>
 
@@ -120,7 +154,9 @@
       إفراغ السلة
     </button>
   </div>
-</aside><!-- ============ FAVORITES ============ -->
+</aside>
+
+<!-- ============ FAVORITES ============ -->
 <div class="favorites-overlay" id="favoritesOverlay"></div>
 
 <aside class="favorites" id="favorites">
@@ -153,39 +189,6 @@
   </div>
 
 </aside>
-        <nav class="nav-links" id="navLinks">
-          <a href="#home" class="nav-link">الرئيسية</a>
-          <a href="#products" class="nav-link">المنتجات</a>
-          <a href="#categories" class="nav-link">التصنيفات</a>
-          <a href="#about" class="nav-link">قصتنا</a>
-          <a href="#contact" class="nav-link">تواصل</a>
-          <a href="#products" class="btn btn--primary btn--small nav-cta"
-            >المنتجات</a
-          >
-          
-        </nav>
-        <!-- Cart Button -->
-        <button class="cart-toggle" id="cartToggle" aria-label="فتح السلة">
-          <span class="cart-icon">🛒</span>
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-        <!-- Favorites Button -->
-<button class="favorites-toggle" id="favoritesToggle" aria-label="فتح المفضلة">
-  <span class="favorites-icon">❤️</span>
-  <span class="favorites-count" id="favoritesCount">0</span>
-</button>
-
-        <!-- Mobile menu toggle (hamburger) -->
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </header>
 
     <main>
       <!-- ============ HERO ============ -->
@@ -588,7 +591,15 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
       ↑
     </button>
-
+<!-- Floating Cart Button -->
+<button
+  id="floatingCartToggle"
+  class="floating-cart"
+  aria-label="فتح السلة"
+>
+  <span>🛒</span>
+  <span class="floating-cart-count" id="floatingCartCount">0</span>
+</button>
     <script src="script.js"></script>
   </body>
 </html>
