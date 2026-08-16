@@ -67,6 +67,46 @@
 
   <!-- Cart Footer -->
   <div class="cart__footer">
+
+    <!-- Customer info form -->
+    <div class="checkout-form" id="checkoutForm">
+      <span class="tape-label">بيانات التوصيل</span>
+
+      <div class="form-field">
+        <label for="customerName">الاسم بالكامل</label>
+        <input
+          type="text"
+          id="customerName"
+          placeholder="اكتبي اسمك هنا"
+          autocomplete="name"
+        />
+        <span class="form-error" id="errorName"></span>
+      </div>
+
+      <div class="form-field">
+        <label for="customerPhone">رقم التواصل</label>
+        <input
+          type="tel"
+          id="customerPhone"
+          placeholder="01xxxxxxxxx"
+          autocomplete="tel"
+          inputmode="numeric"
+        />
+        <span class="form-error" id="errorPhone"></span>
+      </div>
+
+      <div class="form-field">
+        <label for="customerAddress">عنوان التوصيل</label>
+        <textarea
+          id="customerAddress"
+          placeholder="المحافظة، المنطقة، تفاصيل العنوان"
+          rows="2"
+          autocomplete="street-address"
+        ></textarea>
+        <span class="form-error" id="errorAddress"></span>
+      </div>
+    </div>
+
     <div class="cart__total">
       <span>الإجمالي</span>
       <strong id="cartTotal">0 جنيه</strong>
@@ -406,7 +446,7 @@
             <p>كل حكاية جميلة تبدأ بفكرة صغيرة...</p>
 
             <p>
-              بدأت Pink &amp; Paper من حبٍّ بسيط للأشياء التي تجعل الأيام
+              بدأت Pink &amp; Paper من حبٍّ بسيط للأشياء التي تجعل الأيام
               العادية أكثر جمالًا؛ من رائحة الورق الجديد، ومن أول صفحةٍ بيضاء
               تنتظر أن تُكتب، ومن أقلامٍ ملوّنة تجعل حتى الملاحظات الصغيرة تبدو
               كأن لها حكاية.
@@ -426,7 +466,7 @@
 
             <p>
               في Pink &amp; Paper، نختار كل قطعة بعناية؛ من الدفاتر التي تحفظ
-              أفكارك، إلى الأقلام التي ترافق أول خطٍّ تخطّه على الورق، والتفاصيل
+              أفكارك، إلى الأقلام التي ترافق أول خطٍّ تخطّه على الورق، والتفاصيل
               الصغيرة التي تمنح مكتبك شيئًا من روحك.
             </p>
 

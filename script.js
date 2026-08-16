@@ -27,18 +27,16 @@ const PRODUCTS = [
     description: "يلا نحلي بالكيك 😍",
     price: 20,
     images: [
-      
       "images/pen/photo_2026-08-15_22-08-20.jpg",
     ],
     category: "pens",
   },
-    {
+  {
     name: "نوتة كرومي 4 فواصل 🎀",
     description: "مقاس 10*12 سم تقريباً ",
     price: 30,
     images: [
       "images/NOTES/photo_2026-08-15_22-45-22.jpg",
-
     ],
     category: "school",
   },
@@ -57,27 +55,27 @@ const PRODUCTS = [
     category: "cute",
   },
   {
-  name: "ستيكي نوتس دبدوب ❤️",
-  description: "ورقها ناعم وكريمي جدا🤍 فيها 70 ورقة",
-  price: 95,
-  images: [
-    "images/NOTES/photo_2026-08-15_23-31-33.jpg",
-    "images/NOTES/photo_2026-08-15_23-31-35.jpg",
-    "images/NOTES/photo_2026-08-15_23-31-37 (2).jpg",
-    "images/NOTES/photo_2026-08-15_23-31-37.jpg"
-  ],
-  category: "cute",
-},
+    name: "ستيكي نوتس دبدوب ❤️",
+    description: "ورقها ناعم وكريمي جدا🤍 فيها 70 ورقة",
+    price: 95,
+    images: [
+      "images/NOTES/photo_2026-08-15_23-31-33.jpg",
+      "images/NOTES/photo_2026-08-15_23-31-35.jpg",
+      "images/NOTES/photo_2026-08-15_23-31-37 (2).jpg",
+      "images/NOTES/photo_2026-08-15_23-31-37.jpg"
+    ],
+    category: "cute",
+  },
   {
-  name: "كشكول سلك فواصل بلاستيك – حجم A5 ✨",
-  description: `✔️ عدد 124 ورقة
+    name: "كشكول سلك فواصل بلاستيك – حجم A5 ✨",
+    description: `✔️ عدد 124 ورقة
 ✔️ متقسم .. ألوانه كلها باستيل ♥️
 ✔️ حجم A5 عملي يدخل الشنطة
 ✔️ خامة ورق ممتازة`,
-  price: 150,
-  image: "images/NOTES/photo_2026-08-16_00-00-14.jpg",
-  category: "cute",
-},
+    price: 150,
+    image: "images/NOTES/photo_2026-08-16_00-00-14.jpg",
+    category: "cute",
+  },
   {
     name: "Washi Tape Set (6 rolls)",
     description: "Patterned washi tape rolls for decorating anything.",
@@ -166,14 +164,10 @@ function renderFavorites() {
   if (!favoritesItems) return;
 
 
-  /* Remove invalid indexes just in case */
-
   favorites = favorites.filter(
     index => PRODUCTS[index]
   );
 
-
-  /* Empty favorites */
 
   if (favorites.length === 0) {
 
@@ -196,8 +190,6 @@ function renderFavorites() {
     return;
   }
 
-
-  /* Render favorite products */
 
   favoritesItems.innerHTML = favorites.map(index => {
 
@@ -230,24 +222,25 @@ function renderFavorites() {
 
           <div class="favorite-item__actions">
 
-  <button
-    class="favorite-item__add-cart"
-    type="button"
-    data-index="${index}"
-  >
-    🛒 أضف إلى السلة
-  </button>
+            <button
+              class="favorite-item__add-cart"
+              type="button"
+              data-index="${index}"
+            >
+              🛒 أضف إلى السلة
+            </button>
 
-  <button
-    class="favorite-item__remove"
-    type="button"
-    data-index="${index}"
-    title="إزالة من المفضلة"
-  >
-    إزالة من المفضلة 🗑️
-  </button>
+            <button
+              class="favorite-item__remove"
+              type="button"
+              data-index="${index}"
+              title="إزالة من المفضلة"
+            >
+              إزالة من المفضلة 🗑️
+            </button>
 
-</div>
+          </div>
+
         </div>
 
       </div>
@@ -255,8 +248,6 @@ function renderFavorites() {
 
   }).join("");
 
-
-  /* Remove favorite buttons */
 
   favoritesItems
     .querySelectorAll(".favorite-item__remove")
@@ -272,22 +263,32 @@ function renderFavorites() {
       });
 
     });
-    /* Add favorite to cart */
-favoritesItems
-  .querySelectorAll(".favorite-item__add-cart")
-  .forEach((button) => {
-    button.addEventListener("click", () => {
-      const index = Number(button.dataset.index);
 
-      addToCart(index);
 
-      button.textContent = "✓ تمت الإضافة";
+  favoritesItems
+    .querySelectorAll(".favorite-item__add-cart")
+    .forEach((button) => {
 
-      setTimeout(() => {
-        button.textContent = "🛒 أضف إلى السلة";
-      }, 900);
+      button.addEventListener("click", () => {
+
+        const index =
+          Number(button.dataset.index);
+
+        addToCart(index);
+
+        button.textContent =
+          "✓ تمت الإضافة";
+
+        setTimeout(() => {
+
+          button.textContent =
+            "🛒 أضف إلى السلة";
+
+        }, 900);
+
+      });
+
     });
-  });
 
 
   updateFavoritesCount();
@@ -301,8 +302,6 @@ favoritesItems
 function toggleFavorite(productIndex, button) {
 
   if (favorites.includes(productIndex)) {
-
-    /* Remove */
 
     favorites = favorites.filter(
       index => index !== productIndex
@@ -323,8 +322,6 @@ function toggleFavorite(productIndex, button) {
 
   } else {
 
-    /* Add */
-
     favorites.push(productIndex);
 
     if (button) {
@@ -343,28 +340,16 @@ function toggleFavorite(productIndex, button) {
   }
 
 
-  /* Save */
-
   localStorage.setItem(
     "pinkPaperFavorites",
     JSON.stringify(favorites)
   );
 
 
-  /* Update counter */
-
   updateFavoritesCount();
-
-
-  /* Update favorites drawer */
 
   renderFavorites();
 
-  /*
-    IMPORTANT:
-    We DO NOT open the favorites drawer here.
-    It only opens when the user clicks the ❤️ counter/button.
-  */
 }
 
 
@@ -385,11 +370,10 @@ function removeFromFavorites(productIndex) {
   );
 
 
-  /* Update product card heart */
-
   const button = document.querySelector(
     `.favorite-btn[data-index="${productIndex}"]`
   );
+
 
   if (button) {
 
@@ -431,7 +415,6 @@ function openFavorites() {
 
 
   renderFavorites();
-
 
   favoritesElement.classList.add("is-open");
 
@@ -512,8 +495,6 @@ function setupFavorites() {
     document.getElementById("favoritesOverlay");
 
 
-  /* Open / close favorites */
-
   if (favoritesToggle) {
 
     favoritesToggle.addEventListener(
@@ -544,8 +525,6 @@ function setupFavorites() {
   }
 
 
-  /* Close button */
-
   if (favoritesClose) {
 
     favoritesClose.addEventListener(
@@ -556,8 +535,6 @@ function setupFavorites() {
   }
 
 
-  /* Close by clicking outside */
-
   if (favoritesOverlay) {
 
     favoritesOverlay.addEventListener(
@@ -567,8 +544,6 @@ function setupFavorites() {
 
   }
 
-
-  /* Close with Escape */
 
   document.addEventListener(
     "keydown",
@@ -583,8 +558,6 @@ function setupFavorites() {
     }
   );
 
-
-  /* Initial count */
 
   updateFavoritesCount();
 
@@ -721,10 +694,6 @@ function renderProducts() {
   ).join("");
 
 
-  /* ------------------------------------------------------------------------
-     PRODUCT IMAGE THUMBNAILS
-     ------------------------------------------------------------------------ */
-
   grid
     .querySelectorAll(".product-thumbnail")
     .forEach((thumbnail) => {
@@ -779,10 +748,6 @@ function renderProducts() {
     });
 
 
-  /* ------------------------------------------------------------------------
-     FAVORITE BUTTONS
-     ------------------------------------------------------------------------ */
-
   grid
     .querySelectorAll(".favorite-btn")
     .forEach((button) => {
@@ -805,10 +770,6 @@ function renderProducts() {
     });
 
 
-  /* ------------------------------------------------------------------------
-     ADD TO CART BUTTONS
-     ------------------------------------------------------------------------ */
-
   grid
     .querySelectorAll(".add-to-cart")
     .forEach((button) => {
@@ -827,8 +788,6 @@ function renderProducts() {
 
     });
 
-
-  /* Re-observe cards */
 
   observeReveals();
 }
@@ -864,8 +823,6 @@ function addToCart(productIndex) {
 
   updateCartCount();
 
-
-  /* Small visual feedback */
 
   const addButton =
     document.querySelector(
@@ -1005,8 +962,6 @@ function renderCart() {
   if (!cartItems) return;
 
 
-  /* Empty cart */
-
   if (cart.length === 0) {
 
     cartItems.innerHTML = `
@@ -1035,8 +990,6 @@ function renderCart() {
 
   }
 
-
-  /* Cart products */
 
   cartItems.innerHTML =
     cart.map(item => {
@@ -1126,8 +1079,6 @@ function renderCart() {
     }).join("");
 
 
-  /* Update total */
-
   const total =
     calculateCartTotal();
 
@@ -1139,8 +1090,6 @@ function renderCart() {
 
   }
 
-
-  /* Cart buttons */
 
   cartItems
     .querySelectorAll(
@@ -1284,7 +1233,64 @@ function closeCart() {
 
 
 /* --------------------------------------------------------------------------
-   24. SEND CART TO WHATSAPP
+   24. VALIDATE CHECKOUT FORM
+   -------------------------------------------------------------------------- */
+
+function validateCheckoutForm() {
+
+  let isValid = true;
+
+  const fields = [
+    {
+      inputId: "customerName",
+      errorId: "errorName",
+      message: "من فضلك اكتبي الاسم ❤️",
+      validate: (value) => value.trim().length > 0,
+    },
+    {
+      inputId: "customerPhone",
+      errorId: "errorPhone",
+      message: "من فضلك اكتبي رقم صحيح (11 رقم) 📞",
+      validate: (value) => /^01[0125][0-9]{8}$/.test(value.trim()),
+    },
+    {
+      inputId: "customerAddress",
+      errorId: "errorAddress",
+      message: "من فضلك اكتبي عنوان التوصيل 📍",
+      validate: (value) => value.trim().length > 0,
+    },
+  ];
+
+  fields.forEach(({ inputId, errorId, message, validate }) => {
+
+    const input = document.getElementById(inputId);
+    const errorEl = document.getElementById(errorId);
+
+    if (!input || !errorEl) return;
+
+    const field = input.closest(".form-field");
+
+    if (!validate(input.value)) {
+
+      field.classList.add("has-error");
+      errorEl.textContent = message;
+      isValid = false;
+
+    } else {
+
+      field.classList.remove("has-error");
+      errorEl.textContent = "";
+
+    }
+
+  });
+
+  return isValid;
+}
+
+
+/* --------------------------------------------------------------------------
+   25. SEND CART TO WHATSAPP
    -------------------------------------------------------------------------- */
 
 function sendCartToWhatsApp() {
@@ -1296,13 +1302,43 @@ function sendCartToWhatsApp() {
     );
 
     return;
-
   }
 
 
+  if (!validateCheckoutForm()) {
+
+    document
+      .getElementById("checkoutForm")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    return;
+  }
+
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const customerPhone =
+    document.getElementById("customerPhone").value.trim();
+
+  const customerAddress =
+    document.getElementById("customerAddress").value.trim();
+
+
+  /* Order Message */
+
   let message = `Hello Pink & Paper! 🎀
 
-I'd like to place an order:
+🛍️ طلب جديد
+
+👤 الاسم: ${customerName}
+📞 رقم التواصل: ${customerPhone}
+📍 العنوان: ${customerAddress}
+
+المنتجات:
 
 `;
 
@@ -1313,13 +1349,12 @@ I'd like to place an order:
       PRODUCTS[item.index];
 
     const itemTotal =
-      product.price *
-      item.quantity;
+      product.price * item.quantity;
 
 
     message += `${index + 1}. ${product.name}
-Quantity: ${item.quantity}
-Price: ${itemTotal} EGP
+الكمية: ${item.quantity}
+السعر: ${itemTotal} EGP
 
 `;
 
@@ -1330,26 +1365,23 @@ Price: ${itemTotal} EGP
     calculateCartTotal();
 
 
-  message += `Total: ${total} EGP
+  message += `💰 الإجمالي: ${total} EGP
 
 Thank you! 💕`;
 
+
+  /* Open WhatsApp without popup blocker */
 
   const whatsappLink =
     buildWhatsAppLink(message);
 
 
-  window.open(
-    whatsappLink,
-    "_blank",
-    "noopener,noreferrer"
-  );
+  window.location.href = whatsappLink;
 
 }
 
-
 /* --------------------------------------------------------------------------
-   25. SETUP SHOPPING CART
+   26. SETUP SHOPPING CART
    -------------------------------------------------------------------------- */
 
 function setupCart() {
@@ -1369,8 +1401,6 @@ function setupCart() {
   const cartClear =
     document.getElementById("cartClear");
 
-
-  /* Cart toggle */
 
   if (cartToggle) {
 
@@ -1402,8 +1432,6 @@ function setupCart() {
   }
 
 
-  /* Close */
-
   if (cartClose) {
 
     cartClose.addEventListener(
@@ -1413,8 +1441,6 @@ function setupCart() {
 
   }
 
-
-  /* Overlay */
 
   if (cartOverlay) {
 
@@ -1426,8 +1452,6 @@ function setupCart() {
   }
 
 
-  /* WhatsApp */
-
   if (cartWhatsapp) {
 
     cartWhatsapp.addEventListener(
@@ -1437,8 +1461,6 @@ function setupCart() {
 
   }
 
-
-  /* Clear */
 
   if (cartClear) {
 
@@ -1460,8 +1482,6 @@ function setupCart() {
 
   }
 
-
-  /* Escape */
 
   document.addEventListener(
     "keydown",
@@ -1485,7 +1505,7 @@ function setupCart() {
 
 
 /* --------------------------------------------------------------------------
-   26. WIRE UP GENERAL WHATSAPP LINKS
+   27. WIRE UP GENERAL WHATSAPP LINKS
    -------------------------------------------------------------------------- */
 
 function wireGeneralWhatsAppLinks() {
@@ -1522,7 +1542,7 @@ function wireGeneralWhatsAppLinks() {
 
 
 /* --------------------------------------------------------------------------
-   27. MOBILE MENU TOGGLE
+   28. MOBILE MENU TOGGLE
    -------------------------------------------------------------------------- */
 
 function setupMobileMenu() {
@@ -1593,7 +1613,7 @@ function setupMobileMenu() {
 
 
 /* --------------------------------------------------------------------------
-   28. SCROLL REVEAL
+   29. SCROLL REVEAL
    -------------------------------------------------------------------------- */
 
 let revealObserver;
@@ -1653,7 +1673,7 @@ function observeReveals() {
 
 
 /* --------------------------------------------------------------------------
-   29. SETUP SCROLL REVEAL
+   30. SETUP SCROLL REVEAL
    -------------------------------------------------------------------------- */
 
 function setupScrollReveal() {
@@ -1689,7 +1709,7 @@ function setupScrollReveal() {
 
 
 /* --------------------------------------------------------------------------
-   30. BACK TO TOP BUTTON
+   31. BACK TO TOP BUTTON
    -------------------------------------------------------------------------- */
 
 function setupBackToTop() {
@@ -1735,7 +1755,7 @@ function setupBackToTop() {
 
 
 /* --------------------------------------------------------------------------
-   31. NAVBAR SHADOW ON SCROLL
+   32. NAVBAR SHADOW ON SCROLL
    -------------------------------------------------------------------------- */
 
 function setupNavbarScrollState() {
@@ -1767,7 +1787,7 @@ function setupNavbarScrollState() {
 
 
 /* --------------------------------------------------------------------------
-   32. FOOTER YEAR
+   33. FOOTER YEAR
    -------------------------------------------------------------------------- */
 
 function setupFooterYear() {
@@ -1786,6 +1806,8 @@ function setupFooterYear() {
   }
 
 }
+
+
 /* --------------------------------------------------------------------------
    CATEGORY FILTER
    -------------------------------------------------------------------------- */
@@ -1798,29 +1820,38 @@ function setupCategoryFilters() {
   const productCards =
     document.querySelectorAll(".product-card");
 
+
   categoryCards.forEach((card) => {
 
     card.addEventListener("click", (event) => {
 
       event.preventDefault();
 
+
       const selectedCategory =
         card.dataset.filter;
+
 
       productCards.forEach((product) => {
 
         const productCategory =
           product.dataset.category;
 
+
         if (
           productCategory === selectedCategory
         ) {
+
           product.style.display = "flex";
+
         } else {
+
           product.style.display = "none";
+
         }
 
       });
+
 
       document
         .getElementById("products")
@@ -1834,53 +1865,37 @@ function setupCategoryFilters() {
 
 }
 
+
 /* --------------------------------------------------------------------------
-   33. INIT
+   34. INIT
    -------------------------------------------------------------------------- */
 
-// document.addEventListener(
-//   "DOMContentLoaded",
-//   () => {
-
-//     renderProducts();
-
-//     renderFavorites();
-
-//     updateFavoritesCount();
-
-//     wireGeneralWhatsAppLinks();
-
-//     setupMobileMenu();
-
-//     setupCart();
-
-//     setupFavorites();
-
-//     setupScrollReveal();
-
-//     setupBackToTop();
-
-//     setupNavbarScrollState();
-
-//     setupFooterYear();
-
-//   }
-// );
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
     renderProducts();
+
     renderFavorites();
+
     updateFavoritesCount();
+
     wireGeneralWhatsAppLinks();
+
     setupMobileMenu();
+
     setupCart();
+
     setupFavorites();
+
     setupCategoryFilters();
+
     setupScrollReveal();
+
     setupBackToTop();
+
     setupNavbarScrollState();
+
     setupFooterYear();
 
   }

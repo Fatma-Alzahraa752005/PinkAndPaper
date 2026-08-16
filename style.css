@@ -2078,6 +2078,7 @@ body {
   transform: scale(0.8);
   transform-origin: top center;
 }
+
 /* =========================================================
    FINAL MOBILE HERO FIX
    ========================================================= */
@@ -2619,4 +2620,72 @@ body {
   }
 }
 
+}
+
+/* =========================================================
+   CHECKOUT FORM (inside cart)
+   ========================================================= */
+
+.checkout-form {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(91, 64, 56, 0.08);
+  direction: rtl;
+}
+
+.form-field {
+  margin-bottom: 12px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-brown);
+  margin-bottom: 6px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid rgba(91, 64, 56, 0.14);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-brown);
+  direction: rtl;
+  text-align: right;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(91, 64, 56, 0.4);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-pink-deep);
+  box-shadow: 0 0 0 3px rgba(231, 139, 160, 0.18);
+}
+
+.form-field.has-error input,
+.form-field.has-error textarea {
+  border-color: #d9534f;
+}
+
+.form-error {
+  display: none;
+  font-size: 0.76rem;
+  color: #d9534f;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.form-field.has-error .form-error {
+  display: block;
 }
